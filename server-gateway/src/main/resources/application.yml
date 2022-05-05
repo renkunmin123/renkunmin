@@ -1,0 +1,41 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: server-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: server-permiss
+          uri: lb://server-permiss
+          predicates:
+            - Path=/permiss/**
+        - id: server-role
+          uri: lb://server-role
+          predicates:
+            - Path=/role/**
+        - id: server-user
+          uri: lb://server-user
+          predicates:
+            - Path=/user/**
+    nacos:
+      discovery:
+        server-addr: 192.168.1.166
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  file:
+    name: nacos1.logs
+  level:
+    root: info
+logging.file.path: ./logs
+logging.pattern.console: '%d{yyyy-MM-dd hh:mm:ss} [%thread] %-5level %logger{50} - %msg%n'
+logging.pattern.file: '%d{yyyy-MM-dd hh:mm:ss} [%thread] %-5level %logger{50} - %msg%n'

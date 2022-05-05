@@ -1,0 +1,24 @@
+server:
+  port: 8008
+spring:
+  application:
+    name: server-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.166
+  boot:
+    admin:
+      ui:
+        title: ·þÎñ×´Ì¬¼à¿Ø
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
